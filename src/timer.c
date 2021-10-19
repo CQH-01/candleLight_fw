@@ -42,6 +42,18 @@ void timer_init()
 	TIM2->ARR = 0xFFFFFFFF;
 	TIM2->CR1 |= TIM_CR1_CEN;
 	TIM2->EGR = TIM_EGR_UG;
+
+	// __HAL_RCC_TIM3_CLK_ENABLE();
+    // TIM3->CNT = 0;
+    // TIM3->PSC = 48-1;  			//预分频值 （8400）
+    // TIM3->ARR = 5-1;  			//重装载值 （1s钟定时）
+    // TIM3->CR1 = 0;      		//将控制寄存器1清空
+    // TIM3->CR1 |= 1<<2;    		//设置事件更新请求源
+    // TIM3->CR1 &= ~(1<<7);   	/*设置无缓冲功能*/
+    // TIM3->CR1 &= ~(1<<3);   	/*设置循环模式*/
+    // TIM3->DIER |= 1<<0;     	/*允许更新中断使能*/
+    // NVIC_EnableIRQ(TIM3_IRQn);  /*使能基本定时器中断*/
+    // TIM3->CR1 |= 1<<0;     		/*开启计数器使能*/
 }
 
 uint32_t timer_get()

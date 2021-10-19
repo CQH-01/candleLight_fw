@@ -47,6 +47,24 @@ void SysTick_Handler(void)
 	HAL_SYSTICK_IRQHandler();
 }
 
+// void TIM3_Handler(void)
+// {
+//     static uint8_t PinState = 0;
+//     if(TIM3->SR & (1<<0))      //溢出中断
+//     {
+//         TIM3->SR &= ~(1<<0);  //清除中断标志位
+//         if (PinState != 0)
+//         {
+//             GPIOB->BSRR = (uint32_t)GPIO_PIN_4;
+//         }
+//         else
+//         {
+//             GPIOB->BRR = (uint32_t)GPIO_PIN_4;
+//         }
+//         PinState = !PinState;
+//     }
+// }
+
 extern PCD_HandleTypeDef hpcd_USB_FS;
 void USB_Handler(void)
 {
@@ -100,7 +118,7 @@ const pFunc InterruptVectorTable[48] =
     0, // int 13: TIM1_BRK_UP_TRG_COM
     0, // int 14: TIM1_CC
     0, // int 15: TIM2
-    0, // int 16: TIM3
+    0, //TIM3_Handler,// int 16: TIM3
     0, // int 17: TIM6_DAC
     0, // int 18: TIM7
     0, // int 19: TIM14
